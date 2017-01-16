@@ -1,0 +1,38 @@
+G = gcc
+LINKS = -lsocket -lnsl -lresolv
+
+TARGETS = client_compile aws_compile serverA_compile serverB_compile serverC_compile 
+
+all: $(TARGETS)
+
+client_compile: client.c
+	$(G) -o client.out client.c $(LINKS)
+
+aws_compile: aws.c
+	$(G) -o aws.out aws.c $(LINKS)
+
+serverA_compile: serverA.c
+	$(G) -o serverA.out serverA.c $(LINKS)
+
+serverB_compile: serverB.c
+	$(G) -o serverB.out serverB.c $(LINKS)	
+
+serverC_compile: serverC.c
+	$(G) -o serverC.out serverC.c $(LINKS)
+
+aws:
+	./aws.out	
+
+serverA:
+	./serverA.out	
+
+serverB:
+	./serverB.out	
+
+serverC:
+	./serverC.out	
+
+clean:
+	$(RM) client.out aws.out serverA.out serverB.out serverC.out
+
+.PHONY: serverA serverB serverC aws
